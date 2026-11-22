@@ -55,7 +55,8 @@ export default function Home() {
             <div className="hero-text">
               <h1 className="name"><SplitName text={profile.name} /></h1>
               <p className="tagline">
-                Full-stack engineer building <RotatingText phrases={building} />
+                <span className="screen-only">Full-stack engineer building <RotatingText phrases={building} /></span>
+                <span className="print-only">Full-stack engineer building web apps in English and Arabic</span>
               </p>
               <p className="intro">{profile.intro}</p>
               <p className="avail">

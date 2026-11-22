@@ -72,6 +72,7 @@ img { display: block; max-width: 100%; height: auto; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
 .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gutter); }
+.print-only { display: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 .skip { position: absolute; left: 12px; top: -48px; z-index: 60; background: var(--ink); color: var(--paper); padding: 8px 14px; border-radius: 8px; }
@@ -540,4 +541,56 @@ a.gh-card:hover { border-color: var(--accent); transform: translateY(-3px); }
   .timeline::before, .timeline::after { left: 5px; }
   .timeline > li::before { left: -28px; top: 36px; width: 14px; height: 14px; }
   .sphere-tag { font-size: 0.82rem; }
+}
+
+/* ---------- Print / PDF ---------- */
+@media print {
+  @page { size: A4; margin: 14mm 12mm; }
+  :root, :root[data-theme="dark"] {
+    --paper: #ffffff; --ink: #13212c; --muted: #56636c; --line: #d6dbd4;
+    --raise: #eef1ec; --surface: #ffffff; --accent: #0e7672; --accent-2: #22409a; --accent-soft: #d3eae6;
+    color-scheme: light;
+  }
+  body { font-size: 11pt; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .nav, .skip, .bot, .bot-launcher, .hero-scene, .marquee, .filters, .sphere-wrap,
+  .actions, .caret, .gh-note { display: none !important; }
+  * { animation: none !important; transition: none !important; }
+  .can-reveal [data-reveal], [data-reveal], .split-ch, .projects { opacity: 1 !important; transform: none !important; }
+  .hero { padding-top: 0; }
+  .hero-text { text-shadow: none; }
+  .name { font-size: 40pt; }
+  .avatar-wrap { width: 150px; }
+  .avatar-ring::before { animation: none; }
+  .section { padding-top: 28pt; }
+  .section-head h2, .contact h2 { font-size: 22pt; }
+  .project { display: flex; align-items: flex-start; gap: 18pt; padding: 14pt 0; }
+  .project-text, .project .shot, .about-grid > div:last-child { break-inside: avoid; }
+  .project img { content-visibility: visible; }
+  .project > * { min-width: 0; }
+  .project-text { flex: 1.5 1 0; }
+  .project .shot { flex: 1 1 0; margin-top: 18pt; }
+  .project .summary { font-size: 10pt; margin-top: 4pt; }
+  .project .points, .more-item .points { margin-top: 6pt; gap: 1pt; font-size: 9.5pt; }
+  .project .stack, .project .tags, .project .links { margin-top: 6pt; }
+  .project h3 { margin-top: 4pt; }
+  .more-item { padding: 12pt; }
+  .more-item h3 { font-size: 14pt; }
+  #github { display: none !important; }
+  .shot { will-change: auto; transform: none !important; }
+  .section-head, .sub-h, .contact h2 { break-after: avoid; }
+  .contact { break-inside: avoid; }
+  .screen-only { display: none !important; }
+  .print-only { display: inline !important; }
+  .project h3 { font-size: 16pt; }
+  .more { grid-template-columns: 1fr 1fr; }
+  .more-item, .timeline > li, .gh-card, .small li, .skills div, .lead li { break-inside: avoid; }
+  .skills-grid { display: block; margin-top: 16pt; }
+  .skills-grid .skills { grid-template-columns: 1fr 1fr; column-gap: 24pt; }
+  .gh-grid { grid-template-columns: repeat(3, 1fr); }
+  .gh-skeleton { display: none; }
+  .sub-h { margin-top: 24pt; }
+  .contact { padding: 28pt 0 0; }
+  .contact-mail { font-size: 20pt; }
+  .footer { padding-bottom: 0; }
+  a { text-decoration-color: currentColor; }
 }

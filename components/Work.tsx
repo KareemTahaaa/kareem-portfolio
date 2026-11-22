@@ -63,7 +63,7 @@ function Shot({ p }: { p: Project }) {
         <span className="shot-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="shot-url">{p.live?.label}</span>
       </div>
-      <Image src={p.image.src} alt={p.image.alt} width={1440} height={900} sizes="(max-width: 960px) 100vw, 640px" />
+      <Image src={p.image.src} alt={p.image.alt} width={1440} height={900} sizes="(max-width: 960px) 100vw, 640px" loading="eager" />
       <span className="shot-glare" aria-hidden="true" />
     </div>
   );
